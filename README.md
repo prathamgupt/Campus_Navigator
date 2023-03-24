@@ -2,7 +2,7 @@
 
 https://campusnavigator.000webhostapp.com/sweproject/index.html
 
-#Authors
+# Authors
 
 [@prathamgupta](https://github.com/prathamgupt)
 [@darshanjain](https://github.com/darshanjaipuria)
