@@ -1,5 +1,7 @@
 # Deployed Link
 
+![App Screenshot](https://github.com/prathamgupt/Campus_Navigator/blob/main/Screenshot/Screenshot%202023-03-24%20233836.png?raw=true)
+
 https://campusnavigator.000webhostapp.com/sweproject/index.html
 
 # Authors
