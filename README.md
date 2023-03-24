@@ -1,70 +1,137 @@
-# Getting Started with Create React App
+# Deployed Link
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://campusnavigator.000webhostapp.com/sweproject/index.html
 
-## Available Scripts
+# The PHP Interpreter
 
-In the project directory, you can run:
+PHP is a popular general-purpose scripting language that is especially suited to
+web development. Fast, flexible and pragmatic, PHP powers everything from your
+blog to the most popular websites in the world. PHP is distributed under the
+[PHP License v3.01](LICENSE).
 
-### `npm start`
+[![Push](https://github.com/php/php-src/actions/workflows/push.yml/badge.svg)](https://github.com/php/php-src/actions/workflows/push.yml)
+[![Build status](https://travis-ci.com/php/php-src.svg?branch=master)](https://travis-ci.com/github/php/php-src)
+[![Build status](https://ci.appveyor.com/api/projects/status/meyur6fviaxgdwdy/branch/master?svg=true)](https://ci.appveyor.com/project/php/php-src)
+[![Fuzzing Status](https://oss-fuzz-build-logs.storage.googleapis.com/badges/php.svg)](https://bugs.chromium.org/p/oss-fuzz/issues/list?sort=-opened&can=1&q=proj:php)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Documentation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The PHP manual is available at [php.net/docs](https://php.net/docs).
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prebuilt packages and binaries
 
-### `npm run build`
+Prebuilt packages and binaries can be used to get up and running fast with PHP.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+For Windows, the PHP binaries can be obtained from
+[windows.php.net](https://windows.php.net). After extracting the archive the
+`*.exe` files are ready to use.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+For other systems, see the [installation chapter](https://php.net/install).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Building PHP source code
 
-### `npm run eject`
+*For Windows, see [Build your own PHP on Windows](https://wiki.php.net/internals/windows/stepbystepbuild_sdk_2).*
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+For a minimal PHP build from Git, you will need autoconf, bison, and re2c. For
+a default build, you will additionally need libxml2 and libsqlite3.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+On Ubuntu, you can install these using:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    sudo apt install -y pkg-config build-essential autoconf bison re2c \
+                        libxml2-dev libsqlite3-dev
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+On Fedora, you can install these using:
 
-## Learn More
+    sudo dnf install re2c bison autoconf make libtool ccache libxml2-devel sqlite-devel
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Generate configure:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    ./buildconf
 
-### Code Splitting
+Configure your build. `--enable-debug` is recommended for development, see
+`./configure --help` for a full list of options.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    # For development
+    ./configure --enable-debug
+    # For production
+    ./configure
 
-### Analyzing the Bundle Size
+Build PHP. To speed up the build, specify the maximum number of jobs using `-j`:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    make -j4
 
-### Making a Progressive Web App
+The number of jobs should usually match the number of available cores, which
+can be determined using `nproc`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Testing PHP source code
 
-### Advanced Configuration
+PHP ships with an extensive test suite, the command `make test` is used after
+successful compilation of the sources to run this test suite.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+It is possible to run tests using multiple cores by setting `-jN` in
+`TEST_PHP_ARGS`:
 
-### Deployment
+    make TEST_PHP_ARGS=-j4 test
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Shall run `make test` with a maximum of 4 concurrent jobs: Generally the maximum
+number of jobs should not exceed the number of cores available.
 
-### `npm run build` fails to minify
+The [qa.php.net](https://qa.php.net) site provides more detailed info about
+testing and quality assurance.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Installing PHP built from source
+
+After a successful build (and test), PHP may be installed with:
+
+    make install
+
+Depending on your permissions and prefix, `make install` may need super user
+permissions.
+
+## PHP extensions
+
+Extensions provide additional functionality on top of PHP. PHP consists of many
+essential bundled extensions. Additional extensions can be found in the PHP
+Extension Community Library - [PECL](https://pecl.php.net).
+
+## Contributing
+
+The PHP source code is located in the Git repository at
+[github.com/php/php-src](https://github.com/php/php-src). Contributions are most
+welcome by forking the repository and sending a pull request.
+
+Discussions are done on GitHub, but depending on the topic can also be relayed
+to the official PHP developer mailing list internals@lists.php.net.
+
+New features require an RFC and must be accepted by the developers. See
+[Request for comments - RFC](https://wiki.php.net/rfc) and
+[Voting on PHP features](https://wiki.php.net/rfc/voting) for more information
+on the process.
+
+Bug fixes don't require an RFC. If the bug has a GitHub issue, reference it in
+the commit message using `GH-NNNNNN`. Use `#NNNNNN` for tickets in the old
+[bugs.php.net](https://bugs.php.net) bug tracker.
+
+    Fix GH-7815: php_uname doesn't recognise latest Windows versions
+    Fix #55371: get_magic_quotes_gpc() throws deprecation warning
+
+See [Git workflow](https://wiki.php.net/vcs/gitworkflow) for details on how pull
+requests are merged.
+
+### Guidelines for contributors
+
+See further documents in the repository for more information on how to
+contribute:
+
+- [Contributing to PHP](/CONTRIBUTING.md)
+- [PHP coding standards](/CODING_STANDARDS.md)
+- [Mailing list rules](/docs/mailinglist-rules.md)
+- [PHP release process](/docs/release-process.md)
+
+## Credits
+
+For the list of people who've put work into PHP, please see the
+[PHP credits page](https://php.net/credits.php).
+
