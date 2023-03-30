@@ -4,11 +4,6 @@
 
 https://campusnavigator.000webhostapp.com/sweproject/index.html
 
-# Authors
-
-[@prathamgupta](https://github.com/prathamgupt)
-[@darshanjain](https://github.com/darshanjaipuria)
-
 # The PHP Interpreter
 
 PHP is a popular general-purpose scripting language that is especially suited to
